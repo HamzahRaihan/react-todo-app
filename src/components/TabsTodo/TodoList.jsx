@@ -1,7 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-// import All from "./All";
-// import Incompleted from "./Incompleted";
-// import Completed from "./Completed";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addTodoCompleted, getTodo } from "../../redux/slices/TodoSlice";
@@ -22,16 +19,6 @@ function TodoList() {
   };
   const [tab, setTab] = useState("all");
 
-  // let selectedTab;
-
-  // if (tab === "all") {
-  //   selectedTab = <All />;
-  // } else if (tab == "active") {
-  //   selectedTab = <Incompleted />;
-  // } else if (tab == "completed") {
-  //   selectedTab = <Completed />;
-  // }
-
   const filterTodos = (todos, tab) => {
     if (tab === "all") {
       return todos;
@@ -45,11 +32,6 @@ function TodoList() {
   };
 
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
-
-  console.log(
-    "🚀 ~ file: TodoList.jsx:48 ~ TodoList ~ visibleTodos:",
-    visibleTodos,
-  );
 
   const buttons = [
     {
@@ -81,7 +63,6 @@ function TodoList() {
           </button>
         ))}
       </div>
-      {/* <div className="flex flex-col ">{selectedTab}</div> */}
       <div>
         {isLoading ? (
           <div className="text-white">Loading</div>

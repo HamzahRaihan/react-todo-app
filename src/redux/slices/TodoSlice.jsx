@@ -12,7 +12,18 @@ export const getTodo = () => {
   };
 };
 
-export const addTodoCompleted = (id, title, isChecked) => {
+export const addTodoList = (newData) => {
+  return async (dispatch) => {
+    dispatch(setStatus("success"));
+    const { data } = await axios.post(
+      "https://65387f5ea543859d1bb17ede.mockapi.io/todo",
+      newData,
+    );
+    dispatch(addTodo(data));
+  };
+};
+
+export const editTodoList = (id, title, isChecked) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
     const { data } = await axios.put(
@@ -23,7 +34,17 @@ export const addTodoCompleted = (id, title, isChecked) => {
         isComplete: isChecked,
       },
     );
-    dispatch(addTodoDone(data));
+    dispatch(editTodo(data));
+  };
+};
+
+export const deleteTodoList = (id) => {
+  return async (dispatch) => {
+    dispatch(setStatus("success"));
+    await axios.delete(
+      `https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`,
+    );
+    dispatch(deleteTodo(id));
   };
 };
 
@@ -44,16 +65,27 @@ const TodoSlice = createSlice({
       state.isLoading = false;
       state.status = "success";
     },
-    addTodoDone(state, action) {
+    addTodo(state, action) {
+      state.todos = [...state.todos, action.payload];
+      state.isLoading = false;
+      state.status = "success";
+    },
+    editTodo(state, action) {
       const index = state.todos.findIndex(
         (item) => item.id === action.payload.id,
       );
       state.todos[index] = action.payload;
       state.isLoading = false;
     },
+    deleteTodo(state, action) {
+      state.todos = state.todos.filter((item) => item.id !== action.payload);
+      state.isLoading = false;
+      state.status = "success";
+    },
   },
 });
 
-export const { setStatus, getTodoData, addTodoDone } = TodoSlice.actions;
+export const { setStatus, getTodoData, editTodo, deleteTodo, addTodo } =
+  TodoSlice.actions;
 
 export default TodoSlice.reducer;

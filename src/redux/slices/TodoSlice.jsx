@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// get all todo list from API
 export const getTodo = () => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
@@ -12,6 +13,7 @@ export const getTodo = () => {
   };
 };
 
+// add new todo list to API
 export const addTodoList = (newData) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
@@ -23,6 +25,7 @@ export const addTodoList = (newData) => {
   };
 };
 
+// edit todo list by id from API
 export const editTodoList = (id, title, isChecked) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
@@ -38,6 +41,7 @@ export const editTodoList = (id, title, isChecked) => {
   };
 };
 
+// delete todo list by ID from API
 export const deleteTodoList = (id) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
@@ -48,6 +52,7 @@ export const deleteTodoList = (id) => {
   };
 };
 
+// create slice todo to make actions and reducer in 1 function
 const TodoSlice = createSlice({
   name: "Todo",
   initialState: {
@@ -85,7 +90,7 @@ const TodoSlice = createSlice({
   },
 });
 
-export const { setStatus, getTodoData, editTodo, deleteTodo, addTodo } =
+export const { setStatus, getTodoData, addTodo, editTodo, deleteTodo } =
   TodoSlice.actions;
 
 export default TodoSlice.reducer;

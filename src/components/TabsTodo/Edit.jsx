@@ -1,14 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { editTodoList } from "../../redux/slices/TodoSlice";
 import { IconsBackspace, IconsEdit } from "../Icons";
 function Edit(props) {
-  const dispatch = useDispatch();
-
-  const handleEditTodoList = (id, title, isChecked) => {
-    dispatch(editTodoList(id, title, isChecked));
-  };
   const [inputEdit, setInputEdit] = useState(props.todoEditInput);
 
   return (
@@ -31,7 +24,11 @@ function Edit(props) {
           <button
             className="rounded-lg bg-[#fafafa] px-4 py-2 transition-all hover:opacity-90 active:opacity-75"
             onClick={() => {
-              handleEditTodoList(props.todoID, inputEdit, props.todoComplete);
+              props.handleEditTodoList(
+                props.todoID,
+                inputEdit,
+                props.todoComplete,
+              );
               props.setModal(false);
             }}
           >

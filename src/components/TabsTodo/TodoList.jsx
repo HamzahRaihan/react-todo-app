@@ -60,6 +60,7 @@ function TodoList() {
 
   return (
     <>
+      {/* buttons categories */}
       <div className="flex gap-2 text-[#fafafa]">
         {buttons.map((btn) => (
           <Buttons
@@ -71,6 +72,8 @@ function TodoList() {
           />
         ))}
       </div>
+
+      {/* show todo content */}
       <div>
         {isLoading ? (
           <Loading />
@@ -129,6 +132,8 @@ function TodoList() {
           </div>
         )}
       </div>
+
+      {/* Modal */}
       {modal && (
         <Edit
           modal={modal}
@@ -136,6 +141,7 @@ function TodoList() {
           todoEditInput={todoEditInput}
           todoID={todoID}
           setTodoComplete={todoComplete}
+          handleEditTodoList={handleEditTodoList}
         />
       )}
     </>

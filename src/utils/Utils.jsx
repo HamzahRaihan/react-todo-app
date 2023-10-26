@@ -1,3 +1,4 @@
+// filter todo by tab
 export const filterTodos = (todos, tab) => {
   if (tab === "all") {
     return todos;

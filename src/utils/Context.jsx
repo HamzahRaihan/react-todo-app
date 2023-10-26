@@ -1,4 +1,4 @@
-// Format articles' date
+// Format articles date
 export const formatDate = (date) => {
   const options = {
     year: "numeric",

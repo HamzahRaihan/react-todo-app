@@ -12,13 +12,14 @@ export const getTodo = () => {
   };
 };
 
-export const addTodoCompleted = (id, isChecked) => {
+export const addTodoCompleted = (id, title, isChecked) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
     const { data } = await axios.put(
       `https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`,
       {
         id: id,
+        title: title,
         isComplete: isChecked,
       },
     );
@@ -43,7 +44,6 @@ const TodoSlice = createSlice({
       state.isLoading = false;
       state.status = "success";
     },
-
     addTodoDone(state, action) {
       const index = state.todos.findIndex(
         (item) => item.id === action.payload.id,

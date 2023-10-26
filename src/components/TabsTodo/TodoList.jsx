@@ -13,6 +13,7 @@ import { formatDate } from "../../utils/Context";
 import Edit from "./Edit";
 import Buttons from "../Buttons";
 import Loading from "../Loading";
+import { IconsDelete, IconsEdit } from "../Icons";
 
 function TodoList() {
   // all states
@@ -117,10 +118,10 @@ function TodoList() {
                         handleEditModal(item.id, item.title, item.isComplete)
                       }
                     >
-                      edit
+                      <IconsEdit />
                     </button>
                     <button onClick={() => handleDeleteTodo(item.id)}>
-                      delete
+                      <IconsDelete />
                     </button>
                   </div>
                 </div>

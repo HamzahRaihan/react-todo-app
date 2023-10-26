@@ -14,6 +14,7 @@ function Home() {
       isComplete: false,
       createdAt: Date.now(),
     };
+    setInput("");
     dispatch(addTodoList(newTodo));
   };
 

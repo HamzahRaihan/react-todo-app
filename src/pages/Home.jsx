@@ -28,7 +28,9 @@ function Home() {
     <>
       <div className="flex h-full w-full flex-col items-center justify-center bg-black p-4 font-inter">
         <div className="flex w-full max-w-3xl flex-col gap-4 border-black">
-          <h1 className="text-2xl font-bold text-[#fafafa]">What's the plan</h1>
+          <h1 className="text-2xl font-bold text-[#fafafa]">
+            What's the plan?
+          </h1>
           <div className="flex  gap-3">
             <form onSubmit={handleAddTodo} className="flex w-full gap-3">
               <input

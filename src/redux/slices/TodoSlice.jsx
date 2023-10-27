@@ -6,9 +6,20 @@ import axios from "axios";
 export const getTodo = () => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
-    const { data } = await axios.get(
-      "https://65387f5ea543859d1bb17ede.mockapi.io/todo",
-    );
+    const { data } = await axios
+      .get("https://65387f5ea543859d1bb17ede.mockapi.io/todo")
+      .catch(function (error) {
+        if (error.response) {
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        } else if (error.request) {
+          console.error(error.request);
+        } else {
+          console.error("error", error.message);
+        }
+        console.log(error.config);
+      });
     dispatch(getTodoData({ data, status: "success", isLoading: false }));
   };
 };
@@ -17,10 +28,20 @@ export const getTodo = () => {
 export const addTodoList = (newData) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
-    const { data } = await axios.post(
-      "https://65387f5ea543859d1bb17ede.mockapi.io/todo",
-      newData,
-    );
+    const { data } = await axios
+      .post("https://65387f5ea543859d1bb17ede.mockapi.io/todo", newData)
+      .catch(function (error) {
+        if (error.response) {
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        } else if (error.request) {
+          console.error(error.request);
+        } else {
+          console.error("error", error.message);
+        }
+        console.log(error.config);
+      });
     dispatch(addTodo(data));
   };
 };
@@ -29,14 +50,24 @@ export const addTodoList = (newData) => {
 export const editTodoList = (id, title, isChecked) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
-    const { data } = await axios.put(
-      `https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`,
-      {
+    const { data } = await axios
+      .put(`https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`, {
         id: id,
         title: title,
         isComplete: isChecked,
-      },
-    );
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        } else if (error.request) {
+          console.error(error.request);
+        } else {
+          console.error("error", error.message);
+        }
+        console.log(error.config);
+      });
     dispatch(editTodo(data));
   };
 };
@@ -45,9 +76,20 @@ export const editTodoList = (id, title, isChecked) => {
 export const deleteTodoList = (id) => {
   return async (dispatch) => {
     dispatch(setStatus("success"));
-    await axios.delete(
-      `https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`,
-    );
+    await axios
+      .delete(`https://65387f5ea543859d1bb17ede.mockapi.io/todo/${id}`)
+      .catch(function (error) {
+        if (error.response) {
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        } else if (error.request) {
+          console.error(error.request);
+        } else {
+          console.error("error", error.message);
+        }
+        console.log(error.config);
+      });
     dispatch(deleteTodo(id));
   };
 };

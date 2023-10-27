@@ -11,11 +11,15 @@ function Home() {
   // handleAddTodo purpose is for user can add new data
   const handleAddTodo = (e) => {
     e.preventDefault();
+    if (input.trim() == "") {
+      console.error("input something");
+    }
     const newTodo = {
       title: input,
       isComplete: false,
       createdAt: Date.now(),
     };
+
     setInput("");
     dispatch(addTodoList(newTodo));
   };
@@ -33,6 +37,7 @@ function Home() {
                 placeholder="What todo"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                required
               />
               <button className="rounded-lg bg-[#fafafa] px-4 transition-all hover:opacity-90 active:opacity-75">
                 Add
